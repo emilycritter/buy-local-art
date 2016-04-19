@@ -45,8 +45,8 @@ var NavigationBarRouteMapper = {
     return (
       <TouchableOpacity style={{flex: 1, justifyContent: 'center'}}
           onPress={() => navigator.parentNavigator.pop()}>
-        <Text style={{color: 'white', margin: 10,}}>
-          Back
+        <Text style={styles.navigatorBarText}>
+          back
         </Text>
       </TouchableOpacity>
     );
@@ -55,8 +55,8 @@ var NavigationBarRouteMapper = {
     return (
       <TouchableOpacity style={{flex: 1, justifyContent: 'center'}}
           onPress={() => navigator.parentNavigator.push({id: 'unknown'})}>
-        <Text style={{color: 'white', margin: 10,}}>
-          Map
+        <Text style={styles.navigatorBarText}>
+          map
         </Text>
       </TouchableOpacity>
     );

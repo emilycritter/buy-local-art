@@ -67,7 +67,7 @@ var MainPage = React.createClass ({
            dataSource={rows}
            renderRow={
              (piece) =>
-             <TouchableHighlight onPress={this.gotoPieceDetailPage}>
+             <TouchableHighlight onPress={this.gotoPieceDetailPage} piece={piece}>
                <View>
                  <Piece piece={piece} key={piece.id} />
                </View>
@@ -76,16 +76,6 @@ var MainPage = React.createClass ({
            enableEmptySections={true}
          />
       </ScrollView>;
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent:'center'}}>
-        <TouchableHighlight style={{backgroundColor: 'yellow', padding: 10}}
-            onPress={this.gotoPieceDetailPage}>
-          <Text>
-            Main Page
-          </Text>
-        </TouchableHighlight>
-      </View>
-    );
   },
   renderLoadingView(){
     return (
@@ -101,7 +91,6 @@ var MainPage = React.createClass ({
   gotoPieceDetailPage() {
     this.props.navigator.push({
       id: 'PieceDetailPage',
-      email: 'usersemail',
     });
   }
 })
@@ -111,8 +100,8 @@ var NavigationBarRouteMapper = {
     return (
       <TouchableOpacity style={{flex: 1, justifyContent: 'center'}}
           onPress={() => navigator.parentNavigator.pop()}>
-        <Text style={{color: 'white', margin: 10,}}>
-          Back
+        <Text style={styles.navigatorBarText}>
+          back
         </Text>
       </TouchableOpacity>
     );
@@ -138,7 +127,7 @@ const styles = StyleSheet.create({
   },
   scrolly: {
     flex: 1,
-    marginTop: 60,
+    marginTop: 64,
   },
   login: {
     flex: 1,
