@@ -2,6 +2,7 @@ import React, {
   AppRegistry,
   Component,
   Dimensions,
+  Linking,
   Navigator,
   StyleSheet,
   Text,
@@ -17,6 +18,7 @@ var Piece = React.createClass({
   render(){
 
     let piece = this.props.piece;
+    let url = this.props.url;
 
     var pieceTitleTruncate = function(title){
       if (title.length > 60) {
@@ -37,7 +39,7 @@ var Piece = React.createClass({
       <View style={styles.pieceImageBox}>
         <Image style={styles.pieceImage} source={{uri: `https://buylocalart.herokuapp.com${piece.photo_url}` }} />
         <Text style={styles.piecePrice}>{piece.price_formatted}</Text>
-        <TouchableHighlight onPress={ () => this._navigate(piece) }  underlayColor='#dddddd'>
+        <TouchableHighlight onPress={this.clickHandler}>
           <Text style={styles.pieceTitle}>
             {pieceTitleTruncate(piece.title.toLowerCase())}
           </Text>
@@ -46,14 +48,15 @@ var Piece = React.createClass({
     </View>
   },
 
-  _navigate(){
-    this.props.navigator.push({
-      name: 'PieceShow',
-      passProps: {
-        piece: piece
+  clickHandler: function() {
+    Linking.canOpenURL(this.props.url).then(supported => {
+      if (supported) {
+        Linking.openURL(this.props.url);
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
       }
-    })
-  }
+    });
+  },
 
 });
 

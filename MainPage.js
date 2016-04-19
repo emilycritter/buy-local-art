@@ -65,14 +65,7 @@ var MainPage = React.createClass ({
     return <ScrollView style={styles.scrolly}>
         <ListView
            dataSource={rows}
-           renderRow={
-             (piece) =>
-             <TouchableHighlight onPress={this.gotoPieceDetailPage} piece={piece}>
-               <View>
-                 <Piece piece={piece} key={piece.id} />
-               </View>
-             </TouchableHighlight>
-           }
+           renderRow={(piece) => <Piece piece={piece} url={'https://buylocalart.herokuapp.com' + piece.piece_url} key={piece.id} />}
            enableEmptySections={true}
          />
       </ScrollView>;
