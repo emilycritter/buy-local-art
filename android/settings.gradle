@@ -1,0 +1,3 @@
+rootProject.name = 'BuyLocalArt'
+
+include ':app'
